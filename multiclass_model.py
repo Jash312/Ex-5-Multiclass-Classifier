@@ -32,6 +32,13 @@ def define_dense_model_with_hidden_layer(input_length,
     ])
     return model
 
+def get_mnist_data():
+    """Get the MNIST data."""
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    x_train = x_train.reshape(60000, 784).astype('float32') / 255
+    x_test = x_test.reshape(10000, 784).astype('float32') / 255 
+    return (x_train, y_train), (x_test, y_test)
+
 def fit_mnist_model(x_train, y_train, model, epochs=2, batch_size=2):
     """Fit the model to the data.
     compile the model and add parameters for the "optimizer", the loss function, 
